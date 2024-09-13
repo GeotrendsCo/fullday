@@ -365,7 +365,7 @@ document.body.appendChild(resetButton);
 // Función para obtener los datos de los ensambles desde la base de datos
 async function obtenerEnsambles() {
     try {
-        const response = await fetch('http://localhost:3001/ensambles');
+        const response = await fetch('http://44.213.153.17:3001/ensambles');
         const datosEnsambles = await response.json();
 
         // Procesar los datos obtenidos y actualizar la tabla
