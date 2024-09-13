@@ -14,7 +14,7 @@ function convertirMinutosASegundos(minutosDecimales) {
 // Función para obtener los datos desde el servidor
 async function obtenerDatosHerramientas() {
     try {
-        const response = await fetch('http://44.213.153.17:5174/ensambles');
+        const response = await fetch('http://44.213.153.17:3001/ensambles');
         const data = await response.json();
 
         // Multiplicadores
@@ -234,7 +234,7 @@ const valorFichas = {
 // Función para obtener los datos desde el servidor
 async function obtenerDatosEquipos() {
     try {
-        const response = await fetch('http://44.213.153.17:5174/ensambles');
+        const response = await fetch('http://44.213.153.17:3001/ensambles');
         const data = await response.json();
 
         // Procesar los datos y crear o actualizar gráficos de donas por equipo
