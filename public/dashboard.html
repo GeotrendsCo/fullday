@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Cargar Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
+
+
+    <!-- Bootstrap CSS para darle estilo si lo necesitas en el futuro -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <style>
+            /* Asegurar que el canvas ocupe todo el espacio disponible del contenedor */
+            .chart-container {
+                width: 100%;
+                max-width: 450px;  /* Asignar un tamaño máximo si se desea */
+                margin: 0 auto;
+            }
+            canvas {
+                width: 100% !important;  /* Hacer que el gráfico ocupe el 100% del contenedor */
+                height: auto !important;  /* Ajustar la altura automáticamente */
+            }
+            table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .section-title {
+            background-color: #d3d3d3;
+            font-weight: bold;
+            text-align: left;
+        }
+        .total {
+            background-color: #add8e6;
+            font-weight: bold;
+        }
+        .heading {
+            text-align: left;
+            font-weight: bold;
+        }
+        </style>
+<body>
+    <div class="container mt-4" style="border: 1px;">
+                <div class="container text-center">
+            <div class="row" >
+                <div class="col" >
+                    <!-- Canvas para el gráfico de herramientas -->
+                    <h2 class="text-center">Costo Total de Herramientas por Equipo</h2>
+                    <canvas id="graficoHerramientas" width="400" height="250"></canvas>
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <h3>TOTAL DEL COSTO</h3>
+                        <table id="tablaCostos" border="1">
+                            <thead>
+                                <tr>
+                                    <th>Concepto</th>
+                                    <!-- Aquí se generarán dinámicamente las columnas para los equipos -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Herramienta</td>
+                                </tr>
+                                <tr>
+                                    <td>Materia Prima</td>
+                                </tr>
+                                <tr>
+                                    <td>Mano de Obra</td>
+                                </tr>
+                                <tr>
+                                    <td>CIF</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TOTAL DE PROYECTO</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row"></div>
+            <h3 class="text-center">Valor por Fichas Usadas por Equipo</h3>
+            <div class="row" id="graficosDonas">
+                <!-- Los gráficos de donas se insertarán dinámicamente aquí -->
+            </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+
+    <!-- Enlace al archivo JavaScript para manejar los gráficos -->
+    <script src="/dashboard.js"></script>
+</body>
+
+</html>

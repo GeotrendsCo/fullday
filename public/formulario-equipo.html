@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Completo</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            background-color: #333; /* Fondo negro */
+            color: #f0f0f0; /* Texto claro */
+        }
+        .formulario-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #444; /* Fondo gris oscuro */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #ffa500; /* Naranja */
+            text-align: center;
+        }
+        label {
+            color: #f0f0f0; /* Texto claro */
+        }
+        .btn-primary {
+            background-color: #ffa500; /* Botón naranja */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #e69500; /* Botón naranja más oscuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="container formulario-container">
+        <h1>Formulario Completo para el Grupo <span id="grupo"></span></h1>
+        <form id="formularioCompleto">
+            <!-- Número de grupo (automático según la URL) -->
+            <input type="hidden" id="numeroGrupo" name="numeroGrupo">
+
+            <!-- Herramientas -->
+            <h2>Herramientas</h2>
+            <div class="form-group">
+                <label for="llaveMinutos">Llave de tuercas (minutos y segundos de uso):</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" id="llaveMinutos" placeholder="Minutos" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" id="llaveSegundos" placeholder="Segundos" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="alicateMinutos">Alicate (minutos y segundos de uso):</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" id="alicateMinutos" placeholder="Minutos" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" id="alicateSegundos" placeholder="Segundos" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Materias Primas -->
+            <h2>Materias Primas</h2>
+            <div class="form-group">
+                <label for="fichasAmarillas">Fichas amarillas (unidades):</label>
+                <input type="number" class="form-control" id="fichasAmarillas" name="fichasAmarillas" min="0" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="fichasAzules">Fichas azules (unidades):</label>
+                <input type="number" class="form-control" id="fichasAzules" name="fichasAzules" min="0" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="fichasRojas">Fichas rojas (unidades):</label>
+                <input type="number" class="form-control" id="fichasRojas" name="fichasRojas" min="0" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="fichasBlancas">Fichas blancas (unidades):</label>
+                <input type="number" class="form-control" id="fichasBlancas" name="fichasBlancas" min="0" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="fichasOtrosColores">Fichas de otros colores (unidades):</label>
+                <input type="number" class="form-control" id="fichasOtrosColores" name="fichasOtrosColores" min="0" step="1" required>
+            </div>
+
+            <!-- CIF (Valores fijos e inmodificables) -->
+            <h2>CIF (Costos Indirectos Fijos)</h2>
+            <div class="form-group">
+                <label for="aguaConsumo">Agua (consumo fijo en m3):</label>
+                <input type="number" class="form-control" id="aguaConsumo" name="aguaConsumo" value="10" readonly>
+            </div>
+            <div class="form-group">
+                <label for="luzConsumo">Luz (consumo fijo en KW/hr):</label>
+                <input type="number" class="form-control" id="luzConsumo" name="luzConsumo" value="15" readonly>
+            </div>
+            <div class="form-group">
+                <label for="internetConsumo">Internet (valor de la factura):</label>
+                <input type="number" class="form-control" id="internetConsumo" name="internetConsumo" value="50" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Registrar Costos</button>
+        </form>
+    </div>
+
+    <!-- Script para obtener el grupo desde la URL y manejar el formulario -->
+    <script>
+        // Obtener el número de grupo desde la URL y configurarlo en el formulario
+        const urlParams = new URLSearchParams(window.location.search);
+        const numeroGrupo = urlParams.get('grupo');
+        document.getElementById('numeroGrupo').value = numeroGrupo;
+        document.getElementById('grupo').innerText = numeroGrupo;
+
+        // Función para enviar el formulario
+        document.getElementById('formularioCompleto').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Convertir minutos y segundos a solo minutos (decimal)
+            const llaveMinutos = parseFloat(document.getElementById('llaveMinutos').value) + (parseFloat(document.getElementById('llaveSegundos').value) / 60);
+            const alicateMinutos = parseFloat(document.getElementById('alicateMinutos').value) + (parseFloat(document.getElementById('alicateSegundos').value) / 60);
+
+            // Capturar los datos del formulario
+            const formData = {
+                numeroGrupo: document.getElementById('numeroGrupo').value,
+                llaveMinutos: llaveMinutos.toFixed(2),
+                alicateMinutos: alicateMinutos.toFixed(2),
+                fichasAmarillas: document.getElementById('fichasAmarillas').value,
+                fichasAzules: document.getElementById('fichasAzules').value,
+                fichasRojas: document.getElementById('fichasRojas').value,
+                fichasBlancas: document.getElementById('fichasBlancas').value,
+                fichasOtrosColores: document.getElementById('fichasOtrosColores').value,
+                aguaConsumo: document.getElementById('aguaConsumo').value,
+                luzConsumo: document.getElementById('luzConsumo').value,
+                internetConsumo: document.getElementById('internetConsumo').value
+            };
+
+            // Enviar los datos al servidor
+            try {
+                const response = await fetch('http://localhost:3001/submit-completo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Costos registrados correctamente');
+                } else {
+                    alert('Error al registrar los costos');
+                }
+            } catch (error) {
+                console.error('Error al enviar los datos:', error);
+                alert('Error en la conexión con el servidor');
+            }
+        });
+    </script>
+</body>
+</html>

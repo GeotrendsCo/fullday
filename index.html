@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Costos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Registro de Costos</h1>
+    
+    <form id="registroCostosForm">
+        <h2>Herramientas</h2>
+        <label for="llaveMinutos">Llave de tuercas (minutos de uso):</label>
+        <input type="number" id="llaveMinutos" name="llaveMinutos" required>
+
+        <label for="alicateMinutos">Alicate (minutos de uso):</label>
+        <input type="number" id="alicateMinutos" name="alicateMinutos" required>
+
+        <h2>Materias Primas</h2>
+        <label for="fichasAmarillas">Fichas amarillas (unidad):</label>
+        <input type="number" id="fichasAmarillas" name="fichasAmarillas" required>
+
+        <label for="fichasAzules">Fichas azules (unidad):</label>
+        <input type="number" id="fichasAzules" name="fichasAzules" required>
+
+        <label for="fichasRojas">Fichas rojas (unidad):</label>
+        <input type="number" id="fichasRojas" name="fichasRojas" required>
+
+        <label for="fichasBlancas">Fichas blancas (unidad):</label>
+        <input type="number" id="fichasBlancas" name="fichasBlancas" required>
+
+        <label for="fichasOtrosColores">Fichas de otros colores (unidad):</label>
+        <input type="number" id="fichasOtrosColores" name="fichasOtrosColores" required>
+
+        <h2>Mano de Obra</h2>
+        <label for="nominaTiempo">Nómina de construcción (tiempo humano en minutos):</label>
+        <input type="number" id="nominaTiempo" name="nominaTiempo" required>
+
+        <h2>CIF (Costos indirectos)</h2>
+        <label for="aguaConsumo">Agua (consumo en m3):</label>
+        <input type="number" id="aguaConsumo" name="aguaConsumo" required>
+
+        <label for="luzConsumo">Luz (consumo en KW/hr):</label>
+        <input type="number" id="luzConsumo" name="luzConsumo" required>
+
+        <label for="internetConsumo">Internet (valor factura):</label>
+        <input type="number" id="internetConsumo" name="internetConsumo" required>
+
+        <button type="submit">Registrar Costos</button>
+    </form>
+
+    <script src="/main.js"></script>
+</body>
+</html>
